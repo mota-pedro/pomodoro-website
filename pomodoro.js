@@ -24,7 +24,7 @@ function updateTimer() {
     }
 
     const formattedTime = formatTime(minutes, seconds);
-    document.getElementById("timer").innerText = formattedTime;
+    document.getElementById("timer-clock").innerText = formattedTime;
 }
 
 function formatTime(minutes, seconds) {
