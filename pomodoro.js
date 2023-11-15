@@ -2,6 +2,8 @@ let timerInterval;
 let minutes = 0;
 let seconds = 0;
 
+document.getElementById("start-button").addEventListener("mouseover", mouseOverButton);
+document.getElementById("start-button").addEventListener("mouseleave", mouseOffButton);
 document.getElementById("start-button").addEventListener("click", startTimer);
 
 function startTimer() {
@@ -35,4 +37,14 @@ function padZero(value) {
 
 function changeStButtonText(text) {
     document.getElementById("start-button").innerText = text;
+}
+
+function mouseOverButton() {
+    document.getElementById("start-button").style.backgroundColor = "white";
+    document.getElementById("start-button").style.color = "rgb(244, 105, 90)";
+}
+
+function mouseOffButton() {
+    document.getElementById("start-button").style.backgroundColor = "";
+    document.getElementById("start-button").style.color = "";
 }
