@@ -63,6 +63,7 @@ function startRest() {
     seconds = 0;
     restMode = true;
     document.body.style.backgroundColor = "rgb(72, 209, 204)";
+    document.body.style.transition = "all 1s"
 }
 
 function stopRest() {
