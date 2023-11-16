@@ -1,13 +1,30 @@
 let timerInterval;
+let isTimerRunning = false;
 let minutes = 0;
 let seconds = 0;
 
 document.getElementById("start-button").addEventListener("mouseover", mouseOverButton);
 document.getElementById("start-button").addEventListener("mouseleave", mouseOffButton);
-document.getElementById("start-button").addEventListener("click", startTimer);
+document.getElementById("start-button").addEventListener("click", toggleTimer);
+
+function toggleTimer() {
+    if (isTimerRunning) {
+        pauseTimer();
+    } else {
+        startTimer();
+    }
+}
 
 function startTimer() {
     timerInterval = setInterval(updateTimer, 1000);
+    isTimerRunning = true;
+    changeStButtonText("Pausar");
+}
+
+function pauseTimer() {
+    clearInterval(timerInterval);
+    isTimerRunning = false;
+    changeStButtonText("Continuar");
 }
 
 function updateTimer() {
@@ -19,6 +36,7 @@ function updateTimer() {
 
         if (minutes == 25) {
             clearInterval(timerInterval);
+            isTimerRunning = false;
             changeStButtonText("Descanso");
         }
     }
