@@ -1,5 +1,6 @@
 let timerInterval;
 let isTimerRunning = false;
+let restMode = false;
 let minutes = 0;
 let seconds = 0;
 
@@ -10,6 +11,12 @@ document.getElementById("start-button").addEventListener("click", toggleTimer);
 function toggleTimer() {
     if (isTimerRunning) {
         pauseTimer();
+    } else if (isTimerRunning == false && document.getElementById("start-button").innerText == "Descanso") {
+        startRest();
+        startTimer();
+    } else if (restMode && document.getElementById("start-button").innerText == "Iniciar") {
+        stopRest();
+        startTimer();
     } else {
         startTimer();
     }
@@ -34,6 +41,12 @@ function updateTimer() {
         seconds = 0;
         minutes++;
 
+        if (minutes == 5 && restMode) {
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+            changeStButtonText("Iniciar");
+        }
+
         if (minutes == 25) {
             clearInterval(timerInterval);
             isTimerRunning = false;
@@ -43,6 +56,20 @@ function updateTimer() {
 
     const formattedTime = formatTime(minutes, seconds);
     document.getElementById("timer-clock").innerText = formattedTime;
+}
+
+function startRest() {
+    minutes = 0;
+    seconds = 0;
+    restMode = true;
+    document.body.style.backgroundColor = "rgb(72, 209, 204)";
+}
+
+function stopRest() {
+    minutes = 0;
+    seconds = 0;
+    restMode = false;
+    document.body.style.backgroundColor = "";
 }
 
 function formatTime(minutes, seconds) {
@@ -58,8 +85,13 @@ function changeStButtonText(text) {
 }
 
 function mouseOverButton() {
-    document.getElementById("start-button").style.backgroundColor = "white";
-    document.getElementById("start-button").style.color = "rgb(244, 105, 90)";
+    if (restMode) {
+        document.getElementById("start-button").style.backgroundColor = "white";
+        document.getElementById("start-button").style.color = "rgb(72, 209, 204)";
+    } else {
+        document.getElementById("start-button").style.backgroundColor = "white";
+        document.getElementById("start-button").style.color = "rgb(244, 105, 90)";
+    }
 }
 
 function mouseOffButton() {
