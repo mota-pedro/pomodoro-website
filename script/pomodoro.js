@@ -45,12 +45,14 @@ function updateTimer() {
             clearInterval(timerInterval);
             isTimerRunning = false;
             changeStButtonText("Iniciar");
+            document.getElementById("alarm-sound").play();
         }
 
         if (minutes == 25) {
             clearInterval(timerInterval);
             isTimerRunning = false;
             changeStButtonText("Descanso");
+            document.getElementById("alarm-sound").play();
         }
     }
 
