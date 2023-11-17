@@ -1,7 +1,7 @@
 let timerInterval;
 let isTimerRunning = false;
 let restMode = false;
-let minutes = 0;
+let minutes = 25;
 let seconds = 0;
 
 document.getElementById("start-button").addEventListener("mouseover", mouseOverButton);
@@ -35,20 +35,20 @@ function pauseTimer() {
 }
 
 function updateTimer() {
-    seconds++;
+    if (seconds == 0) {
+        seconds = 59;
+        minutes--;
+    } else {
+        seconds--;
 
-    if (seconds == 60) {
-        seconds = 0;
-        minutes++;
-
-        if (minutes == 5 && restMode) {
+        if (minutes == 0 && seconds == 0 && restMode) {
             clearInterval(timerInterval);
             isTimerRunning = false;
             changeStButtonText("Iniciar");
             document.getElementById("alarm-sound").play();
         }
 
-        if (minutes == 25) {
+        if (minutes == 0 && seconds == 0 && restMode == false) {
             clearInterval(timerInterval);
             isTimerRunning = false;
             changeStButtonText("Descanso");
@@ -61,16 +61,16 @@ function updateTimer() {
 }
 
 function startRest() {
-    minutes = 0;
-    seconds = 0;
+    minutes = 5;
+    seconds = 1;
     restMode = true;
     document.body.style.backgroundColor = "rgb(72, 209, 204)";
     document.body.style.transition = "all 1s"
 }
 
 function stopRest() {
-    minutes = 0;
-    seconds = 0;
+    minutes = 25;
+    seconds = 1;
     restMode = false;
     document.body.style.backgroundColor = "";
 }
