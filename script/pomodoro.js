@@ -61,7 +61,9 @@ function startRest() {
     seconds = 0;
     restMode = true;
     document.body.style.backgroundColor = "rgb(72, 209, 204)";
+    document.getElementById("frame").style.backgroundColor = "rgb(64, 167, 164)";
     document.body.style.transition = "all 1s"
+    document.getElementById("frame").style.transition = "all 1s"
 }
 
 function stopRest() {
@@ -69,6 +71,7 @@ function stopRest() {
     seconds = 0;
     restMode = false;
     document.body.style.backgroundColor = "";
+    document.getElementById("frame").style.backgroundColor = "";
 }
 
 function formatTime(minutes, seconds) {
