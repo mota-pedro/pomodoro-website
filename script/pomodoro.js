@@ -11,12 +11,6 @@ document.getElementById("start-button").addEventListener("click", toggleTimer);
 function toggleTimer() {
     if (isTimerRunning) {
         pauseTimer();
-    } else if (isTimerRunning == false && document.getElementById("start-button").innerText == "Descanso") {
-        startRest();
-        startTimer();
-    } else if (restMode && document.getElementById("start-button").innerText == "Iniciar") {
-        stopRest();
-        startTimer();
     } else {
         startTimer();
     }
@@ -46,6 +40,7 @@ function updateTimer() {
             isTimerRunning = false;
             changeStButtonText("Iniciar");
             document.getElementById("alarm-sound").play();
+            stopRest();
         }
 
         if (minutes == 0 && seconds == 0 && restMode == false) {
@@ -53,6 +48,7 @@ function updateTimer() {
             isTimerRunning = false;
             changeStButtonText("Descanso");
             document.getElementById("alarm-sound").play();
+            startRest();
         }
     }
 
@@ -62,7 +58,7 @@ function updateTimer() {
 
 function startRest() {
     minutes = 5;
-    seconds = 1;
+    seconds = 0;
     restMode = true;
     document.body.style.backgroundColor = "rgb(72, 209, 204)";
     document.body.style.transition = "all 1s"
@@ -70,7 +66,7 @@ function startRest() {
 
 function stopRest() {
     minutes = 25;
-    seconds = 1;
+    seconds = 0;
     restMode = false;
     document.body.style.backgroundColor = "";
 }
