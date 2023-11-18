@@ -54,6 +54,7 @@ function updateTimer() {
 
     const formattedTime = formatTime(minutes, seconds);
     document.getElementById("timer-clock").innerText = formattedTime;
+    document.getElementById("tab-name").innerText = '(' + formattedTime + ')' + " Poomodoro";
 }
 
 function startRest() {
